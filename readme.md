@@ -148,6 +148,40 @@ docker hub https://hub.docker.com
 docker-compose --version
 ```
 
+ch07/docker-compose.yml
+```
+version: "3"
+
+services:
+  
+  # docker run --name apa000ex2 -d -p 8080:80 httpd
+  apa000ex2:
+    image: httpd
+    ports:
+      - 8080:80
+    restart: always
+
+
+  # docker run --name wordpress000ex12 -dit --net=wordpress000net1 -p 8085:80 
+  #   -e WORDPRESS_DB_HOST=mysql000ex11 -e WORDPRESS_DB_NAME=wordpress000db 
+  #   -e WORDPRESS_DB_USER=wordpress000kun -e WORDPRESS_DB_PASSWORD=wkunpass wordpress
+  wordpress000ex12:
+    depends_on:
+      - mysql000ex11
+    image: wordpress
+    networks:
+      - wordpress000net1
+    ports:
+      - 8085:80
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST=mysql000ex11
+      WORDPRESS_DB_NAME=wordpress000db 
+      WORDPRESS_DB_USER=wordpress000kun
+      WORDPRESS_DB_PASSWORD=wkunpass 
+```
+
+
 ## 
 
 
