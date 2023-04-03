@@ -1,3 +1,5 @@
+# 그림과 실습으로 배우는 도커 & 쿠버네티스
+
 # ch05 docker network
 
 ## network, db, program
@@ -218,7 +220,7 @@ docker-compose -f ch07/com_folder/docker-compose.yml down
 ```
 cd ch07/com_folder
 
-docker-compose up -d
+docker-compose up -d #--scale wordpress000ex12=3
 docker-compose down
 ```
 
