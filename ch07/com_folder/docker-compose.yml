@@ -3,7 +3,8 @@ version: "3"
 services:
   
   mysql000ex11:
-    image: mysql:5.7
+    #image: mysql:5.7
+    image: mysql:8.0
     platform: linux/amd64
     networks:
       - wordpress000net1
@@ -11,7 +12,7 @@ services:
       - mysql000vol11:/var/lib/mysql
     restart: always
     # for mysql:8.0
-    #command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: myrootpass
       MYSQL_DATABASE: wordpress000db
