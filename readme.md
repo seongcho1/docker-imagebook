@@ -1,4 +1,4 @@
-# ch05
+# ch05 docker network
 
 ## network, db, program
 
@@ -20,7 +20,7 @@ docker run --name mariadb000ex17 -dit --net=wordpress000net4 -e MYSQL_ROOT_PASSW
 docker run --name wordpress000ex18  -dit --net=wordpress000net4 -p 8088:80 -e WORDPRESS_DB_HOST=mariadb000ex17 -e WORDPRESS_DB_NAME=wordpress000db -e WORDPRESS_DB_USER=wordpress000kun -e WORDPRESS_DB_PASSWORD=wkunpass wordpress
 ```
 
-# ch06 
+# ch06 docker volume
 
 ## docker cp
 
