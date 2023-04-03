@@ -148,7 +148,31 @@ docker hub https://hub.docker.com
 docker-compose --version
 ```
 
-ch07/docker-compose.yml
+## how to compose
+
+```
+version: "3"		# 버전 기재
+
+services:			# 컨테이너 관련 정보
+  container_name1:
+    image: httpd
+    networks:
+      - network_name1:
+    ports:
+      - 8080:80
+
+  container_name2:
+
+networks:			# 네트워크 관련 정보
+  network_name_1:
+
+volumes:			# 볼륨 관련 정보
+  volume_name1:
+  volume_name2:
+```
+
+
+ch07/docker-compose-test1.yml
 ```
 version: "3"
 
@@ -182,7 +206,22 @@ services:
 ```
 
 
-## 
+
+
+## execute
+
+```
+docker-compose -f ch07/com_folder/docker-compose.yml up -d
+docker-compose -f ch07/com_folder/docker-compose.yml down
+```
+
+```
+cd ch07/com_folder
+
+docker-compose up -d
+docker-compose down
+```
+
 
 
 
