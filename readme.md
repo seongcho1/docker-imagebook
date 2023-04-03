@@ -141,9 +141,21 @@ docker push zoozoo.coomm/nyapacchi:13
 docker hub https://hub.docker.com
 
 
+
 # ch07 docker compose
 
+```
+docker-compose --version
+```
+
 ## 
+
+
+
+
+
+
+# ch08 kubernetes
 
 
 
