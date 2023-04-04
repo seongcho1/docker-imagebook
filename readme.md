@@ -226,11 +226,94 @@ docker-compose down
 
 
 
-
-
-
-
 # ch08 kubernetes
 
+
+## master node and worker node
+
+master node + worker nodes = a cluster
+kuberctl -> master node: kube-scheduler, etcd, ... -> worker node: kube-let, kube-proxy
+kube-scheduler -> kube-let -> pod
+클러스터 상태 유지: 컨테이너, 네트워크, 볼륨의 생성, 모니터링, 유지 + 로드 밸런서
+쿠버네티스의 정의 파일 내용 -> etcd에 오브젝트로 등록 -> pod, service 인스턴스 생성
+
+## 구성과 용어
+
+resources:
+	pod, service, deployment, replicaset, ...
+
+pod: 컨테이너 + 볼륨
+service: 
+	pod에 서비스 요청을 배분하는 반장 (cluster ip)
+	같은 종류의 pod를 하나의 service가 관리 
+	내부 ip를 할당받은 여러개의 pod가 있어도 외부에서는 하나의 ip (cluster ip)로만 접근 가능
+	여러 worker node 간의 분배는 실제 로드 밸런서 또는 ingress가 담당함 (별도의 node 또는 물리적 하드웨어)
+	로드 밸런스 또는 ingress가 분배 -> service가 pod로 분배
+
+ReplicaSet:
+	pod의 수를 관리하는 반장
+	동일한 구성의 pod: replica
+	deployment와 함께 쓰임
+
+deployment:
+	pod의 deploy(배포)를 관리하는 요소: 개념적으로 ReplicatSet 상위 개념
+	pod가 사용하는 image 등 pod info를 가지고 있음
+
+
+## manifest
+
+매니페스트 파일(.yml)은 리소스 단위로 작성 (```---```로 구분)
+
+```
+apiVersion: core/v1, apps/v1
+kind:		Pod, Service, Deployment, ReplicaSet
+metadata:	name, uid, labels, anotation
+spec:		containers
+```
+
+ch08/kube_folder/apa000dep.yml
+ch08/kube_folder/apa000ser.yml
+
+## kubectl commands
+
+```
+kubectl create
+kubectl delete
+kubectl get
+kubectl set
+kubectl apply
+kubectl scale
+kubectl logs
+```
+
+
+deployment
+```
+kubectl apply -f ch08/kube_folder/apa000dep.yml
+kubectl get pods
+```
+
+```
+kubectl get pods
+kubectl delete pod apa000dep-56858455dc-4hh2p
+```
+
+service
+```
+kubectl apply -f ch08/kube_folder/apa000ser.yml
+kubectl get services
+```
+
+delete deployment
+```
+kubectl delete -f ch08/kube_folder/apa000dep.yml
+kubectl get deployment
+```
+
+delete service
+```
+kubectl delete -f ch08/kube_folder/apa000ser.yml
+kubectl get services
+```
 
 
